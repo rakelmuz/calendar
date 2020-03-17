@@ -7,7 +7,7 @@ import pymysql
 #db função de conexão
 def getConnection():
     return pymysql.connect(host='localhost', user='root', password='123456789',
-                           db='myintranet', charset='utf8')
+                           db='calendar', charset='utf8')
 
 #Mudança de formato para que o valor do formato mysql datetime entre os dados selecionados possa ser processado em fullCalendar
 def date_handler(obj):
@@ -42,7 +42,7 @@ def sql_template(type, sql, params=None):
 def getEvento(searchDate):
     if not parameter_checker(searchDate) :
         return json.dumps({})
-    sql = "select id, title, start, end, if(allDay = %s,true,false) allDay from my_schedule where to_days(start) >= to_days(%s) and to_days(end) <= to_days(%s)"
+    sql = "select id, title, start, end, if(allDay = %s,true,false) allDay from evento where to_days(start) >= to_days(%s) and to_days(end) <= to_days(%s)"
     params = ('Y', searchDate['start'], searchDate['end'])
     #Altera os dados  ​​para json, date_handler para processamento de data e hora
     return json.dumps(sql_template(1, sql, params), default=date_handler);
@@ -53,7 +53,7 @@ def setEvento(schedule):
     if not parameter_checker(schedule) :
         return json.dumps({'rows' : 0})
     else :
-        sql = "INSERT INTO my_schedule(title, start, end, allDay) VALUES (%s, %s, %s, %s)"
+        sql = "INSERT INTO evento(title, start, end, allDay) VALUES (%s, %s, %s, %s)"
         params = (schedule['title'], schedule['start'], schedule['end'], schedule['allDay'])
         return json.dumps({'rows' : sql_template(3, sql, params)})
 
@@ -63,7 +63,7 @@ def delEvento(id):
     if not parameter_checker(id) :
         return json.dumps({'rows' : 0})
     else :
-        sql = "DELETE FROM my_schedule WHERE id = %s"
+        sql = "DELETE FROM evento WHERE id = %s"
         params = (id)
         return json.dumps({'rows' : sql_template(3, sql, params)})
 
@@ -73,7 +73,7 @@ def putEvento(schedule):
     if not parameter_checker(schedule) :
         return json.dumps({'rows' : 0})
     else :
-        sql = "UPDATE my_schedule SET title = %s, start = %s, end = %s, allDay = %s WHERE id = %s"
+        sql = "UPDATE evento SET title = %s, start = %s, end = %s, allDay = %s WHERE id = %s"
         params = (schedule['title'], schedule['start'], schedule['end'], schedule['allDay'], schedule['id'])
         return json.dumps({'rows' : sql_template(3, sql, params)})
 
