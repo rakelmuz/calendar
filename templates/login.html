@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8">
+  <title>Login</title>
+  
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
+ <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+ </head>
+ <body>
+  <div class="container" > <h1>Login</h1>
+  
+  <div class="login-body">
+   <p>Por Favor insira seu E-mail e senha</p>
+   
+   <form class="form-group" action="{{ url_for('login') }}" method="post">
+    <label>Email</label>
+    <input type="text" class="form-control" name="email" placeholder="email" id="email" required>
+    <label>Senha</label>
+    <input type="password" class="form-control" name="senha" placeholder="senha" id="senha" required>
+    <input type="checkbox" style="margin: 30px 15px;"value="checked"><b>Lembrar-me</b>
+    <input type="submit" value="Login" class="form-control btn btn-success " name="login">
+   </form>
+   <div id="msg">{{ msg }}</div>
+   <p>Não possui uma conta? <a href="{{ url_for('register') }}">Registrar</a></p>
+  </div>
+ </div>
+ </body>
+</html>

@@ -1,8 +1,8 @@
-/*database 이름은 각자 편하게*/
-create database myintranet;
+/*criação da base de dados
+create database calendar;
 
-/*테이블 생성*/
-CREATE TABLE `my_schedule` (
+/*criar tabela
+CREATE TABLE `evento` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(255) NOT NULL,
   `start` datetime NOT NULL,
@@ -11,6 +11,3 @@ CREATE TABLE `my_schedule` (
   PRIMARY KEY (`id`)
 );
 
-insert into my_schedule(title, start, end, allDay) values('my schedule', now(), now(), 'Y');
-
-commit;
