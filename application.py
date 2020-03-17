@@ -42,5 +42,6 @@ def scheduler():
         schedule = request.form
         return schedulerdao.putEvento(schedule)
 
+
 if __name__ =='__main__':
     app.run(debug=True)
