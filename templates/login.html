@@ -10,10 +10,16 @@
  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
  </head>
  <body>
-  <div class="container"> <h1>Login</h1>
+  <div class="container"> 
+    <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
+      <span class="navbar-text" style="margin: 10px 490px">
+        <h1>Login</h1>
+      </span>
+    </nav>
+    
   
   <div class="main-login main-center">
-   <p>Por Favor insira seu E-mail e senha</p>
+   <p>Por favor insira seu E-mail e senha</p>
    
    <form class="form-group" action="{{ url_for('login') }}" method="post">
     <label>Email</label>

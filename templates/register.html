@@ -4,7 +4,6 @@
   <meta charset="utf-8">
   <title>Cadastro Login</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-  <link rel="stylesheet" href="../static/css/style.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
   <!-- Google Fonts -->
   <link href='https://fonts.googleapis.com/css?family=Passion+One' rel='stylesheet' type='text/css'>
@@ -14,7 +13,7 @@
  <body>
  <div class="container">
    <div class="row main">
-    <div class="main-login main-center">
+    <div class="main-login main-center" style="background-color: #3fa4ec;">
     <h5 style="margin: 40px 50px;">Registrar novo usuario </h5>
      <form action="{{ url_for('register') }}" method="post" autocomplete="off"> 
       <div class="form-group">
