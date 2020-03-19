@@ -2,7 +2,7 @@
 <html>
  <head>
   <meta charset="utf-8">
-  <title>Register</title>
+  <title>Cadastro Login</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
   <link rel="stylesheet" href="../static/css/style.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
@@ -15,7 +15,7 @@
  <div class="container">
    <div class="row main">
     <div class="main-login main-center">
-    <h5>Registrar novo usuario </h5>
+    <h5 style="margin: 40px 50px;">Registrar novo usuario </h5>
      <form action="{{ url_for('register') }}" method="post" autocomplete="off"> 
       <div class="form-group">
        <label for="name" class="cols-sm-2 control-label">E-mail</label>
@@ -40,7 +40,7 @@
        <div id="msg">{{ msg }}</div>
        <input type="submit" value="Register" class="form-control btn btn-primary " name="">
        <p style="padding:5px;">
-       <a href="{{ url_for('login') }}" style="margin: 40px 90px; "class="btn btn-dark ">Login</a></p>
+       <a href="{{ url_for('login') }}" style="margin: 40px 110px; "class="btn btn-dark ">Login</a></p>
        
       </div>
        

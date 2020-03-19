@@ -10,21 +10,25 @@
  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
  </head>
  <body>
-  <div class="container" > <h1>Login</h1>
+  <div class="container"> <h1>Login</h1>
   
-  <div class="login-body">
+  <div class="main-login main-center">
    <p>Por Favor insira seu E-mail e senha</p>
    
    <form class="form-group" action="{{ url_for('login') }}" method="post">
     <label>Email</label>
     <input type="text" class="form-control" name="email" placeholder="email" id="email" required>
     <label>Senha</label>
-    <input type="password" class="form-control" name="senha" placeholder="senha" id="senha" required>
-    <input type="checkbox" style="margin: 30px 15px;"value="checked"><b>Lembrar-me</b>
-    <input type="submit" value="Login" class="form-control btn btn-success " name="login">
+    <input style="margin: 10px 0px"type="password" class="form-control" name="senha" placeholder="senha" id="senha" required>
+    
+    <input type="submit" value="Login" class="form-control btn btn-primary " name="login">
    </form>
    <div id="msg">{{ msg }}</div>
-   <p>Não possui uma conta? <a href="{{ url_for('register') }}">Registrar</a></p>
+   <div class="container4">
+       <p>  Não possui uma conta? <a href="{{ url_for('register') }}">Registrar</a></p>
+    </div>
+    
+   
   </div>
  </div>
  </body>

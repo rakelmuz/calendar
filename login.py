@@ -1,5 +1,9 @@
-#app.py
-from flask import Flask, request, session, redirect, url_for, render_template
+#login.py
+# -- coding: utf-8 --
+# schedulerdao import
+from dao import schedulerdao
+from flask import Flask, request, render_template,session, redirect, url_for
+
 from flaskext.mysql import MySQL
 import pymysql 
 import re 
@@ -67,7 +71,7 @@ def register():
         senha = request.form['senha']
         email = request.form['email']
    
-  #Check if account exists using MySQL
+  #Verifica se existe uma conta usando o MySQL
         cursor.execute('SELECT * FROM login WHERE email = %s', (email))
         login = cursor.fetchone()
         # Se houver uma conta, mostre verificações de erro e validação
@@ -125,6 +129,47 @@ def profile():
         return render_template('profile.html', login=login)
     # O usuário não está conectado, redirecionado para a página de login
     return redirect(url_for('login'))
+
+
+
+
+#Acesso básico à página
+@app.route("/")
+def index():
+    return render_template("layout.html")
+
+# GET E POST dos eventos
+@app.route("/scheduler",methods=["GET","POST","PUT","DELETE"])
+def scheduler():
+    # Se a solicitação Get for recebida
+    if request.method == 'GET':
+        # No fullCalendar, o início e o final são registrados como parâmetros do formato aaaa-mm-dd.
+        start = request.args.get('start')
+        end = request.args.get('end')
+       
+        return schedulerdao.getEvento({'start':start , 'end' : end})
+
+    #se for solicitado o post
+    if request.method == 'POST':
+        start = request.form['start']
+        end = request.form['end']
+        title = request.form['title']
+        #allDay = request.form['allDay']
+
+       
+        schedule = {'title' : title, 'start' : start, 'end' : end}
+        # retorna evento
+        return  schedulerdao.setEvento(schedule)
+
+    #se for solicitado o delete
+    if request.method == 'DELETE':
+        id = request.form['id']
+        return  schedulerdao.delEvento(id)
+
+    #se for solicitado o put
+    if request.method == 'PUT':
+        schedule = request.form
+        return schedulerdao.putEvento(schedule)
   
   
   

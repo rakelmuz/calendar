@@ -42,8 +42,8 @@ def sql_template(type, sql, params=None):
 def getEvento(searchDate):
     if not parameter_checker(searchDate) :
         return json.dumps({})
-    sql = "select id, title, start, end, if(allDay = %s,true,false) allDay from evento where to_days(start) >= to_days(%s) and to_days(end) <= to_days(%s)"
-    params = ('Y', searchDate['start'], searchDate['end'])
+    sql = "select id, title, start, end from evento where to_days(start) >= to_days(%s) and to_days(end) <= to_days(%s)"
+    params = ( searchDate['start'], searchDate['end'])
     #Altera os dados  ​​para json, date_handler para processamento de data e hora
     return json.dumps(sql_template(1, sql, params), default=date_handler);
 
@@ -53,8 +53,8 @@ def setEvento(schedule):
     if not parameter_checker(schedule) :
         return json.dumps({'rows' : 0})
     else :
-        sql = "INSERT INTO evento(title, start, end, allDay) VALUES (%s, %s, %s, %s)"
-        params = (schedule['title'], schedule['start'], schedule['end'], schedule['allDay'])
+        sql = "INSERT INTO evento(title, start, end) VALUES (%s, %s, %s)"
+        params = (schedule['title'], schedule['start'], schedule['end'])
         return json.dumps({'rows' : sql_template(3, sql, params)})
 
 # deletar evento
@@ -73,8 +73,8 @@ def putEvento(schedule):
     if not parameter_checker(schedule) :
         return json.dumps({'rows' : 0})
     else :
-        sql = "UPDATE evento SET title = %s, start = %s, end = %s, allDay = %s WHERE id = %s"
-        params = (schedule['title'], schedule['start'], schedule['end'], schedule['allDay'], schedule['id'])
+        sql = "UPDATE evento SET title = %s, start = %s, end = %s WHERE id = %s"
+        params = (schedule['title'], schedule['start'], schedule['end'], schedule['id'])
         return json.dumps({'rows' : sql_template(3, sql, params)})
 
 # verificar parametro em branco
